@@ -39,8 +39,9 @@
 
 ## 🖼️ Прикрепленное изображение
 
-### 🐾 Marmotta
-<img width="232" height="203" alt="IMG_0463" src="https://github.com/user-attachments/assets/b2e90d45-91d2-4cb2-9ba6-c364b025db7d" />
+### 🐾 майя :-:
+<img width="99" height="176" alt="IMG_0465maya" src="https://github.com/user-attachments/assets/a31c1732-5212-4bd8-a68a-ffb22b9d6973" />
+
 
 </div>
 
