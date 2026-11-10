@@ -64,6 +64,9 @@
 
 
 ## 🗺️ Блок-схема алгоритма программы (Flowchart)
+<div align="center"> 
+
+
 ![lab2.drawio](https://github.com/user-attachments/files/34629839/lab2.drawio)
 
 <div align="center"> 
