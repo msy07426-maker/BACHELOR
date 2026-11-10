@@ -64,6 +64,9 @@
 
 
 ## 🗺️ Блок-схема алгоритма программы (Flowchart)
+![lab2.drawio](https://github.com/user-attachments/files/34629839/lab2.drawio)
+
+<div align="center"> 
 
 <mxfile host="Electron">
   <diagram name="‫الصفحة-1‬" id="R421uFxlyflyUg_a_MlP">
@@ -159,8 +162,6 @@
 </mxfile>
 
 
-<div align="center"> 
-![lab2.drawio](https://github.com/user-attachments/files/34629839/lab2.drawio)
 
 
 
