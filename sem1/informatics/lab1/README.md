@@ -88,7 +88,9 @@
 > 📊 **Логическая структура выполнения программы**
 
 > *Logical execution flow | الهيكل المنطقي لتنفيذ البرنامج*
+> 
 ![lab1.drawio](https://github.com/user-attachments/files/34617309/lab1.drawio)
+
 <mxfile host="Electron">
   <diagram name="‫الصفحة-1‬" id="E_htBZbuySDYP9T9Uxm2">
     <mxGraphModel dx="3323" dy="2484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
