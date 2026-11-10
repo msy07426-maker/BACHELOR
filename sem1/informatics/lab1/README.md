@@ -331,25 +331,25 @@ int main()
 
    float a_f = 1000.0f;
 
-&#x20;   float b_f = 0.0001f;
+   float b_f = 0.0001f;
 
 
 
-&#x20;   float part1_f = pow(a_f - b_f, 5);
+   float part1_f = pow(a_f - b_f, 5);
 
-&#x20;   float part2_f = pow(a_f, 5) - 5 * pow(a_f, 4) * b_f;
+   float part2_f = pow(a_f, 5) - 5 * pow(a_f, 4) * b_f;
 
-&#x20;   float numerator_f = part1_f - part2_f;
-
-
-
-&#x20;   float denominator_f = -10 * pow(a_f, 3) * pow(b_f, 2) + 10 * pow(a_f, 2) * pow(b_f, 3) - 5 * a_f * pow(b_f, 4) + pow(b_f, 5);
-
-&#x20;   float result_float = numerator_f / denominator_f;
+   float numerator_f = part1_f - part2_f;
 
 
 
-&#x20;   cout << "Result with FLOAT:  " << result_float << endl;
+   float denominator_f = -10 * pow(a_f, 3) * pow(b_f, 2) + 10 * pow(a_f, 2) * pow(b_f, 3) - 5 * a_f * pow(b_f, 4) + pow(b_f, 5);
+
+   float result_float = numerator_f / denominator_f;
+
+
+
+   cout << "Result with FLOAT:  " << result_float << endl;
 
 ```
 
@@ -375,27 +375,27 @@ int main()
 
 ```cpp
 
-&#x20;   double a_d = 1000.0;
+   double a_d = 1000.0;
 
-&#x20;   double b_d = 0.0001;
-
-
-
-&#x20;   double part1_d = pow(a_d - b_d, 5);
-
-&#x20;   double part2_d = pow(a_d, 5) - 5 * pow(a_d, 4) * b_d;
-
-&#x20;   double numerator_d = part1_d - part2_d;
+   double b_d = 0.0001;
 
 
 
-&#x20;   double denominator_d = -10 * pow(a_d, 3) * pow(b_d, 2) + 10 * pow(a_d, 2) * pow(b_d, 3) - 5 * a_d * pow(b_d, 4) + pow(b_d, 5);
+   double part1_d = pow(a_d - b_d, 5);
 
-&#x20;   double result_double = numerator_d / denominator_d;
+   double part2_d = pow(a_d, 5) - 5 * pow(a_d, 4) * b_d;
+
+   double numerator_d = part1_d - part2_d;
 
 
 
-&#x20;   cout << "Result with DOUBLE: " << result_double << endl;
+   double denominator_d = -10 * pow(a_d, 3) * pow(b_d, 2) + 10 * pow(a_d, 2) * pow(b_d, 3) - 5 * a_d * pow(b_d, 4) + pow(b_d, 5);
+
+   double result_double = numerator_d / denominator_d;
+
+
+
+   cout << "Result with DOUBLE: " << result_double << endl;
 
 ```
 
@@ -421,15 +421,15 @@ int main()
 
 ```cpp
 
-&#x20;   int n = 5, m = 5;
+   int n = 5, m = 5;
 
 
 
-&#x20;    \\Выражение 1: n++ * ++m
+    \\Выражение 1: n++ * ++m
 
-&#x20;   int res1 = n++ * ++m;
+   int res1 = n++ * ++m;
 
-&#x20;   cout << "1) n++ * ++m = " << res1 << " (After: n=" << n << ", m=" << m << ")" << endl;
+  cout << "1) n++ * ++m = " << res1 << " (After: n=" << n << ", m=" << m << ")" << endl;
 
 ```
 
@@ -453,13 +453,13 @@ int main()
 
 ```cpp
 
-&#x20;   n = 5; m = 5; // Сброс значений
+   n = 5; m = 5; // Сброс значений
 
-&#x20;   // Выражение 2: --m < n--
+   // Выражение 2: --m < n--
 
-&#x20;   bool res2 = --m < n--;
+   bool res2 = --m < n--;
 
-&#x20;   cout << "2) --m < n-- = " << (res2 ? "true" : "false") << endl;
+  cout << "2) --m < n-- = " << (res2 ? "true" : "false") << endl;
 
 ```
 
@@ -483,17 +483,17 @@ int main()
 
 ```cpp
 
-&#x20;   n = 5; m = 5; // Сброс значений
+   n = 5; m = 5; // Сброс значений
 
-&#x20;   // Выражение 3: m++ > n++
+   // Выражение 3: m++ > n++
 
-&#x20;   bool res3 = m++ > n++;
+   bool res3 = m++ > n++;
 
-&#x20;   cout << "3) m++ > n++ = " << (res3 ? "true" : "false") << endl;
+   cout << "3) m++ > n++ = " << (res3 ? "true" : "false") << endl;
 
 
 
-&#x20;   return 0;
+   return 0;
 
 }
 
