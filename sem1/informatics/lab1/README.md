@@ -329,7 +329,7 @@ int main()
 
 {
 
-&#x20   float a_f = 1000.0f;
+   float a_f = 1000.0f;
 
 &#x20;   float b_f = 0.0001f;
 
