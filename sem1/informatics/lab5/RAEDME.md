@@ -30,8 +30,8 @@
 ---
 
 ## 🗺️ Блок-схема алгоритма программы (Flowchart)
-
 <div align="center"> 
+
 
 <img width="1552" height="662" alt="lab5" src="https://github.com/user-attachments/assets/8a212310-b51a-462c-9142-026c3d17f6ad" />
 <mxfile host="Electron">
