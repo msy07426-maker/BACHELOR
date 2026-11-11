@@ -33,11 +33,132 @@
 
 <div align="center"> 
 
-> ⚠️ *Примечание: Вставьте сюда ссылку на изображение вашей блок-схемы `lab4.drawio` (аналогично ЛР №2).*
+[lab4.drawio](https://github.com/user-attachments/files/34667003/lab4.drawio)
 
 </div>
 
----
+---<mxfile host="Electron">
+  <diagram name="‫الصفحة-1‬" id="J5nGwmqfAFddxNvTv3jH">
+    <mxGraphModel dx="4233" dy="2479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="66LrUNiheCG7R__4WCpB-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="start" vertex="1">
+          <mxGeometry height="60" width="104" x="370" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-2" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="srand(time(0))" vertex="1">
+          <mxGeometry height="60" width="120" x="354" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="arr=[200] ," vertex="1">
+          <mxGeometry height="60" width="120" x="370" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="n &amp;lt; 4" vertex="1">
+          <mxGeometry height="80" width="80" x="382" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="end" vertex="1">
+          <mxGeometry height="80" width="120" x="550" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i = 0" vertex="1">
+          <mxGeometry height="60" width="120" x="210" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-7" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="i&amp;lt; n" vertex="1">
+          <mxGeometry height="80" width="80" x="220" y="504" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="arr[i] = rand() % 101 -50" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i ++" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i = 0" vertex="1">
+          <mxGeometry height="60" width="120" x="350" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-11" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="i &amp;lt; n" vertex="1">
+          <mxGeometry height="80" width="80" x="370" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-12" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;" value="arr[i]" vertex="1">
+          <mxGeometry height="60" width="120" x="234" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i ++" vertex="1">
+          <mxGeometry height="60" width="120" x="234" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="idxberelast = n - 2,&lt;div&gt;i =&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;idxberelast&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-15" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="i &amp;lt; n - 1" vertex="1">
+          <mxGeometry height="80" width="80" x="530" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="arr[i] = arr[i+1]" vertex="1">
+          <mxGeometry height="60" width="120" x="414" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i ++" vertex="1">
+          <mxGeometry height="60" width="120" x="420" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="n --&lt;div&gt;idxsecond = 1 ,&lt;/div&gt;&lt;div&gt;i = idwsecond&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="640" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-19" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="i &amp;lt; n-1" vertex="1">
+          <mxGeometry height="80" width="80" x="660" y="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="arr[i] = arr[i+1]" vertex="1">
+          <mxGeometry height="60" width="120" x="570" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i++" vertex="1">
+          <mxGeometry height="60" width="120" x="570" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-22" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="n--&lt;div&gt;i = 0&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="810" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-24" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="i &amp;lt; n" vertex="1">
+          <mxGeometry height="80" width="80" x="830" y="1350" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-25" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="arr[i] &amp;lt; 0" vertex="1">
+          <mxGeometry height="80" width="80" x="747" y="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-26" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="j &amp;gt; i" vertex="1">
+          <mxGeometry height="80" width="80" x="570" y="1650" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="j = n" vertex="1">
+          <mxGeometry height="60" width="120" x="640" y="1560" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="arr[j] = arr[j - 1],&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="420" y="1724" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="j--" vertex="1">
+          <mxGeometry height="60" width="120" x="420" y="1820" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-30" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="arr[i] = 0 ,&lt;div&gt;n++&lt;/div&gt;&lt;div&gt;i++&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="670" y="1724" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-31" edge="1" parent="1" source="66LrUNiheCG7R__4WCpB-9" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" target="66LrUNiheCG7R__4WCpB-7" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="530" />
+            </Array>
+            <mxPoint x="650" y="620" as="sourcePoint" />
+            <mxPoint x="700" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-32" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="i &amp;lt; n" vertex="1">
+          <mxGeometry height="80" width="80" x="690" y="1920" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i = 0" vertex="1">
+          <mxGeometry height="60" width="120" x="670" y="1830" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-34" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;" value="arr[i]" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="2030" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-35" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="end" vertex="1">
+          <mxGeometry height="80" width="120" x="827" y="2030" as="geometry" />
+        </mxCell>
+        <mxCell id="66LrUNiheCG7R__4WCpB-36" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="i ++" vertex="1">
+          <mxGeometry height="60" width="120" x="510" y="2130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
 
 ## 💻 Разбор и подробное объяснение исходного кода
 
