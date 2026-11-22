@@ -1,6 +1,8 @@
 #include <iostream>
 #include <complex>
 #include <cmath>
+#include <cstdarg>
+
 
 using namespace std;
 
@@ -44,19 +46,24 @@ complex<double> power(complex<double> base, int exponent)
 // الجزء 7.2: دالة count باستخدام المؤشرات (أسلوب المحاضرة)
 // =========================================================
 
+
 int count(int k, ...) 
 {
-    int *p = &k;   // ضبط المؤشر على المعامل الأول k (عدد العناصر)
-    int total = 0; // عداد للأعداد التي تقبل القسمة على 3
+    va_list args;       // تعريف قائمة المعاملات المتغيرة
+    va_start(args, k);  // بدء القراءة من بعد المعامل k
 
-    for (; k != 0; k--) 
+    int total = 0;      // عداد للأرقام التي تقبل القسمة على 3
+
+    for (int i = 0; i < k; ++i) 
     {
-        if (*(++p) % 3 == 0) 
-        { // تحريك المؤشر للعنصر التالي وفحص قابليته للقسمة على 3
+        int val = va_arg(args, int); // قراءة الرقم التالي بدقة على أي نظام (32 أو 64 بت)
+        if (val % 3 == 0) 
+        {
             total++;
         }
     }
 
+    va_end(args);       // إغلاق القائمة
     return total;
 }
 
