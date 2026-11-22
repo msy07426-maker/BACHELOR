@@ -529,3 +529,51 @@ Row:     1    1    1    1
 Row:     1    1    1    1
 ---------------------------------------------------------
 
+```
+
+
+```cpp
+
+=========================================================
+     LABORATORY WORK #10: DYNAMIC 2D ARRAYS (new/delete) 
+=========================================================
+
+1. Enter initial number of rows:
+> 4
+2. Enter number of columns:
+> 4
+
+Enter the matrix elements row by row:
+Row 0 (4 integers): 1 1 1 1 
+Row 1 (4 integers): 1 1 1 1
+Row 2 (4 integers): 1 0 0 1
+Row 3 (4 integers): 1 0 1 0
+
+Initial Matrix:
+---------------------------------------------------------
+Row [0]:     1    1    1    1
+Row [1]:     1    1    1    1
+Row [2]:     1    0    0    1
+Row [3]:     1    0    1    0
+---------------------------------------------------------
+
+[SUCCESS] Deleted 2 row(s) containing zero elements.
+Matrix after deleting rows with zeros:
+---------------------------------------------------------
+Row [0]:     1    1    1    1
+Row [1]:     1    1    1    1
+---------------------------------------------------------
+
+Enter the row index where you want to INSERT a new row (0 to 2):
+> 2
+Enter 4 elements for the new row:
+> 0 0 0 0 
+
+[SUCCESS] New row inserted at index 2!
+Final Matrix after insertion:
+---------------------------------------------------------
+Row [0]:     1    1    1    1
+Row [1]:     1    1    1    1
+Row [2]:     0    0    0    0
+---------------------------------------------------------
+```
