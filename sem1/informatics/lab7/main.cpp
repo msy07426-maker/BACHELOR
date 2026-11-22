@@ -4,102 +4,117 @@
 
 using namespace std;
 
-// أ) دالة محملة زائداً (Overloaded) لرفع عدد صحيح إلى أس صحيح
-double power(int base, int exponent)
+// =========================================================
+// الجزء 7.1: الدوال المحملة زائداً (Overloaded Functions)
+// =========================================================
+
+// أ) رفع عدد صحيح إلى أس
+double power(int base, int exponent) 
 {
-    // أي عدد مرفوع للأس صفر يساوي 1
-    if (exponent == 0) 
-    {
-        return 1.0;
-    }
+    if (exponent == 0) return 1.0;
 
     double result = 1.0;
-    int absExp = abs(exponent); // أخذ القيمة المطلقة للأس لتكرار الضرب
+    int absExp = abs(exponent);
 
-    // حلقة تكرارية لضرب الأساس في نفسه بعدد مرات الأس
-    for (int i = 0; i < absExp; ++i)
-    {
-        result *= base;
-    }
-
-    // معالجة الأس السالب (مثال: 2^-3 = 1 / 8)
-    if (exponent < 0)
-    {
-        return 1.0 / result;
-    }
-
-    return result;
-}
-
-// ب) دالة محملة زائداً (Overloaded) لرفع عدد مركب إلى أس صحيح
-complex<double> power(complex<double> base, int exponent)
-{
-    // أي عدد مركب مرفوع للأس صفر يساوي (1 + 0i)
-    if (exponent == 0) 
-    {
-        return complex<double>(1.0, 0.0);
-    }
-
-    complex<double> result(1.0, 0.0);
-    int absExp = abs(exponent); // أخذ القيمة المطلقة للأس
-
-    // حلقة تكرارية لضرب العدد المركب في نفسه
     for (int i = 0; i < absExp; ++i) 
     {
         result *= base;
     }
 
-    // معالجة الأس السالب للعدد المركب (1 / z^|n|)
-    if (exponent < 0) 
-    {
-        return complex<double>(1.0, 0.0) / result;
-    }
-
-    return result;
+    return (exponent < 0) ? (1.0 / result) : result;
 }
 
-int main()
+// ب) رفع عدد مركب إلى أس
+complex<double> power(complex<double> base, int exponent) 
 {
-    // طباعة ترويسة البرنامج للمستخدم
+    if (exponent == 0) return complex<double>(1.0, 0.0);
+
+    complex<double> result(1.0, 0.0);
+    int absExp = abs(exponent);
+
+    for (int i = 0; i < absExp; ++i) 
+    {
+        result *= base;
+    }
+
+    return (exponent < 0) ? (complex<double>(1.0, 0.0) / result) : result;
+}
+
+// =========================================================
+// الجزء 7.2: دالة count باستخدام المؤشرات (أسلوب المحاضرة)
+// =========================================================
+
+int count(int k, ...) 
+{
+    int *p = &k;   // ضبط المؤشر على المعامل الأول k (عدد العناصر)
+    int total = 0; // عداد للأعداد التي تقبل القسمة على 3
+
+    for (; k != 0; k--) 
+    {
+        if (*(++p) % 3 == 0) 
+        { // تحريك المؤشر للعنصر التالي وفحص قابليته للقسمة على 3
+            total++;
+        }
+    }
+
+    return total;
+}
+
+// =========================================================
+// البرنامج الرئيسي (main)
+// =========================================================
+
+int main() 
+{
     cout << "=========================================================\n";
-    cout << "       Power Calculation Program (Overloaded Functions)  \n";
+    cout << "          LABORATORY WORK #7 (Parts 7.1 & 7.2)           \n";
     cout << "=========================================================\n\n";
 
-    // --- الجزء الأول: حساب أس العدد الصحيح ---
-    int intBase, intExp;
-    cout << "[Part 1: Integer Number]\n";
-    cout << "1. Enter an integer base number (e.g., 2):\n> ";
-    cin >> intBase;
+    // --- تشغيل الجزء 7.1 ---
+    cout << ">>> PART 7.1: OVERLOADED FUNCTIONS (POWER) <<<\n\n";
 
-    cout << "2. Enter the integer exponent (power, e.g., 3 or -2):\n> ";
+    int intBase, intExp;
+    cout << "[1. Integer Number]\n";
+    cout << "Enter an integer base number (e.g., 5):\n> ";
+    cin >> intBase;
+    cout << "Enter the integer exponent (e.g., 5):\n> ";
     cin >> intExp;
 
-    // استدعاء الدالة الأولى الخاصة بالأعداد الصحيحة
-    double intResult = power(intBase, intExp);
-    cout << "-> Result: " << intBase << "^" << intExp << " = " << intResult << "\n";
-    cout << "---------------------------------------------------------\n\n";
+    cout << "-> Result: " << intBase << "^" << intExp << " = " << power(intBase, intExp) << "\n\n";
 
-    // --- الجزء الثاني: حساب أس العدد المركب ---
     double realPart, imagPart;
     int compExp;
-    cout << "[Part 2: Complex Number (a + bi)]\n";
-    cout << "1. Enter the real part (a) of the complex number:\n> ";
+    cout << "[2. Complex Number (a + bi)]\n";
+    cout << "Enter the real part (a):\n> ";
     cin >> realPart;
-
-    cout << "2. Enter the imaginary part (b) of the complex number:\n> ";
+    cout << "Enter the imaginary part (b):\n> ";
     cin >> imagPart;
-
-    cout << "3. Enter the integer exponent (power) for the complex number:\n> ";
+    cout << "Enter the integer exponent:\n> ";
     cin >> compExp;
 
-    // تكوين العدد المركب واستدعاء الدالة الثانية الخاصة بالأعداد المركبة
     complex<double> compBase(realPart, imagPart);
     complex<double> compResult = power(compBase, compExp);
 
-    // تنسيق الطباعة لإظهار العدد المركب بشكل رياضي أنيق (a + bi) أو (a - bi)
     char sign = (compResult.imag() >= 0) ? '+' : '-';
     cout << "-> Result: (" << realPart << (imagPart >= 0 ? " + " : " - ") << abs(imagPart) << "i)^" << compExp
          << " = " << compResult.real() << " " << sign << " " << abs(compResult.imag()) << "i\n";
+    cout << "---------------------------------------------------------\n\n";
+
+    // --- تشغيل الجزء 7.2 ---
+    cout << ">>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<\n\n";
+
+    // الاستدعاء الأول: 4 أرقام
+    cout << "1. Call with 4 parameters: count(4, 3, 5, 9, 10)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(4, 3, 5, 9, 10) << "\n\n";
+
+    // الاستدعاء الثاني: 8 أرقام
+    cout << "2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(8, 1, 2, 3, 4, 5, 6, 7, 9) << "\n\n";
+
+    // الاستدعاء الثالث: 12 رقماً
+    cout << "3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21) << "\n";
+
     cout << "=========================================================\n";
 
     return 0;
