@@ -73,19 +73,23 @@ using namespace std;
 ### 🔹 Шаг 2: Перегруженная функция для целого числа (Overloaded Function for Integer)
 
 ```cpp
-double power(int base, int exponent) {
-    if (exponent == 0) {
+double power(int base, int exponent)
+{
+    if (exponent == 0)
+    {
         return 1.0;
     }
 
     double result = 1.0;
     int absExp = abs(exponent);
 
-    for (int i = 0; i < absExp; ++i) {
+    for (int i = 0; i < absExp; ++i)
+    {
         result *= base;
     }
 
-    if (exponent < 0) {
+    if (exponent < 0)
+    {
         return 1.0 / result;
     }
 
@@ -103,19 +107,23 @@ double power(int base, int exponent) {
 ### 🔹 Шаг 3: Перегруженная функция для комплексного числа (Overloaded Function for Complex Number)
 
 ```cpp
-complex<double> power(complex<double> base, int exponent) {
-    if (exponent == 0) {
+complex<double> power(complex<double> base, int exponent)
+{
+    if (exponent == 0)
+    {
         return complex<double>(1.0, 0.0);
     }
 
     complex<double> result(1.0, 0.0);
     int absExp = abs(exponent);
 
-    for (int i = 0; i < absExp; ++i) {
+    for (int i = 0; i < absExp; ++i)
+    {
         result *= base;
     }
 
-    if (exponent < 0) {
+    if (exponent < 0)
+    {
         return complex<double>(1.0, 0.0) / result;
     }
 
@@ -192,9 +200,11 @@ complex<double> power(complex<double> base, int exponent) {
 using namespace std;
 
 // أ) دالة محملة زائداً (Overloaded) لرفع عدد صحيح إلى أس صحيح
-double power(int base, int exponent) {
+double power(int base, int exponent)
+{
     // أي عدد مرفوع للأس صفر يساوي 1
-    if (exponent == 0) {
+    if (exponent == 0)
+    {
         return 1.0;
     }
 
@@ -202,12 +212,14 @@ double power(int base, int exponent) {
     int absExp = abs(exponent); // أخذ القيمة المطلقة للأس لتكرار الضرب
 
     // حلقة تكرارية لضرب الأساس في نفسه بعدد مرات الأس
-    for (int i = 0; i < absExp; ++i) {
+    for (int i = 0; i < absExp; ++i)
+    {
         result *= base;
     }
 
     // معالجة الأس السالب (مثال: 2^-3 = 1 / 8)
-    if (exponent < 0) {
+    if (exponent < 0)
+    {
         return 1.0 / result;
     }
 
@@ -215,9 +227,11 @@ double power(int base, int exponent) {
 }
 
 // ب) دالة محملة زائداً (Overloaded) لرفع عدد مركب إلى أس صحيح
-complex<double> power(complex<double> base, int exponent) {
+complex<double> power(complex<double> base, int exponent)
+{
     // أي عدد مركب مرفوع للأس صفر يساوي (1 + 0i)
-    if (exponent == 0) {
+    if (exponent == 0)
+    {
         return complex<double>(1.0, 0.0);
     }
 
@@ -225,19 +239,22 @@ complex<double> power(complex<double> base, int exponent) {
     int absExp = abs(exponent); // أخذ القيمة المطلقة للأس
 
     // حلقة تكرارية لضرب العدد المركب في نفسه
-    for (int i = 0; i < absExp; ++i) {
+    for (int i = 0; i < absExp; ++i)
+    {
         result *= base;
     }
 
     // معالجة الأس السالب للعدد المركب (1 / z^|n|)
-    if (exponent < 0) {
+    if (exponent < 0)
+    {
         return complex<double>(1.0, 0.0) / result;
     }
 
     return result;
 }
 
-int main() {
+int main()
+{
     // طباعة ترويسة البرنامج للمستخدم
     cout << "=========================================================\n";
     cout << "       Power Calculation Program (Overloaded Functions)  \n";
@@ -258,7 +275,7 @@ int main() {
     cout << "---------------------------------------------------------\n\n";
 
     // --- الجزء الثاني: حساب أس العدد المركب ---
-    double realPart, imagPart;
+double realPart, imagPart;
 int compExp;
 cout << "[Part 2: Complex Number (a + bi)]\n";
 cout << "1. Enter the real part (a) of the complex number:\n> ";
@@ -305,4 +322,228 @@ return 0;
 -> Result: (5 + 5i)^5 = -12500 - 12500i
 =========================================================
 
+```
+## 📌 Постановка задачи (Часть 7.2)
+
+**7.2. Функции с переменным числом параметров:**
+Написать функцию `count` с переменным числом параметров, которая подсчитывает количество чисел типа `int`, кратных 3. Написать вызывающую функцию `main`, которая обращается к функции `count` не менее трёх раз с количеством параметров 4, 8, 12.
+
+> 🌐 **[EN]** Task setup (Part 7.2): Variadic functions — Write a function `count` with a variable number of parameters that counts how many `int` numbers are multiples of 3. Write a calling `main` function that calls `count` at least three times with 4, 8, and 12 parameters.
+> 🌐 **[AR]** صياغة المسألة (الجزء 7.2): الدوال ذات العدد المتغير من المعاملات — كتابة دالة باسم `count` تستقبل عدداً متغيراً من المعاملات وتحسب عدد الأرقام الصحيحة (`int`) التي تقبل القسمة على 3، ثم استدعاؤها في الدالة الرئيسية `main` ثلاث مرات على الأقل بعدد معاملات 4، 8، و 12.
+
+---
+
+## 🗺️ Блок-схема алгоритма программы — Часть 7.2 (Flowchart)
+
+<div align="center">
+
+```mermaid
+flowchart TD
+    Start(["Начало функции count(int k, ...)"]) --> Init["int *p = &k;\nint total = 0;"]
+    Init --> Check{"k != 0 ?"}
+    Check -- "Да / Yes" --> Next["Сдвиг указателя *(++p)\nи проверка: *(++p) % 3 == 0 ?"]
+    Next -- "Да (кратно 3)" --> Inc["total++"]
+    Next -- "Нет (не кратно)" --> Dec["k--"]
+    Inc --> Dec
+    Dec --> Check
+    Check -- "Нет / No" --> Ret(["Возврат total / Return total"])
+```
+
+</div>
+
+---
+
+## 🧩 Пошаговый разбор кода — Часть 7.2 (Step-by-Step Code Explanation)
+
+### 🔹 Шаг 1: Подключение библиотек (Header Files)
+
+```cpp
+#include <iostream>
+
+using namespace std;
+```
+
+Подключается библиотека `iostream` для ввода и вывода данных в консоль. Директива `using namespace std;` позволяет использовать стандартные имена (`cout`, `endl`) без префикса `std::`.
+
+> 🌐 **[EN]** Includes `iostream` for console input and output. `using namespace std;` allows using standard names (`cout`, `endl`) without the `std::` prefix.
+> 🌐 **[AR]** استدعاء مكتبة `iostream` للإدخال والإخراج عبر الشاشة، واستخدام `using namespace std;` لكتابة الأوامر مباشرة دون الحاجة لكتابة `std::`.
+
+---
+
+### 🔹 Шаг 2: Объявление функции и инициализация указателя
+
+```cpp
+int count(int k, ...)
+{
+    int *p = &k;   // ضبط المؤشر على المعامل الأول k (عدد العناصر)
+    int total = 0; // عداد للأعداد التي تقبل القسمة على 3
+```
+
+Функция `count` принимает первый обязательный параметр `k` (количество передаваемых чисел) и многоточие `...` (переменное число параметров). Указатель `p` настраивается на адрес параметра `k` в стеке памяти, а переменная `total` обнуляется для подсчёта подходящих чисел.
+
+> 🌐 **[EN]** The function `count` takes the first mandatory parameter `k` (number of passed integers) and an ellipsis `...` (variable arguments). Pointer `p` is set to the memory address of `k` on the stack, and `total` is initialized to `0` to count multiples of 3.
+> 🌐 **[AR]** تستقبل الدالة `count` المعامل الأول الإجباري `k` (الذي يحدد عدد الأرقام الممررة) ثم النقاط الثلاث `...` للدلالة على تعدد المعاملات. يتم توجيه المؤشر `p` إلى عنوان المتغير `k` في الذاكرة (Stack)، وتصفير العداد `total`.
+
+---
+
+### 🔹 Шаг 3: Цикл перебора параметров через сдвиг указателя
+
+```cpp
+    for (; k != 0; k--)
+{
+        if (*(++p) % 3 == 0)
+        {
+// تحريك المؤشر للعنصر التالي وفحص قابليته للقسمة على 3
+            total++;
+        }
+    }
+
+    return total;
+}
+```
+
+В цикле `for` счётчик `k` уменьшается на 1 на каждой итерации. Выражение `*(++p)` сдвигает указатель к следующему аргументу в памяти и разыменовывает его. Если остаток от деления на 3 равен нулю (`% 3 == 0`), счётчик `total` увеличивается на 1. После завершения цикла возвращается результат `total`.
+
+> 🌐 **[EN]** Inside the `for` loop, `k` decrements by 1 each iteration. The expression `*(++p)` advances the pointer to the next argument in memory and dereferences it. If the remainder when divided by 3 is zero (`% 3 == 0`), `total` is incremented. Finally, `total` is returned.
+> 🌐 **[AR]** في حلقة التكرار `for` ينقص العداد `k` بمقدار 1 في كل دورة، ويقوم التعبير `*(++p)` بتحريك المؤشر إلى الرقم التالي في الذاكرة وقراءة قيمته؛ فإذا كان يقبل القسمة على 3 بدون باقٍ (`% 3 == 0`) يزداد العداد `total` بمقدار 1، ثم تُرجع الدالة النتيجة النهائية.
+
+---
+
+### 🔹 Шаг 4: Вызов функции `count` в `main()` с 4, 8 и 12 параметрами
+
+```cpp
+int main()
+{
+    // الاستدعاء الأول: 4 أرقام
+    cout << "1. Call with 4 parameters: count(4, 3, 5, 9, 10)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(4, 3, 5, 9, 10) << "\n\n";
+
+    // الاستدعاء الثاني: 8 أرقام
+    cout << "2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(8, 1, 2, 3, 4, 5, 6, 7, 9) << "\n\n";
+
+    // الاستدعاء الثالث: 12 رقماً
+    cout << "3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21) << "\n";
+
+    return 0;
+}
+```
+
+Функция `main()` вызывает `count` три раза: сначала для 4 чисел (`k = 4`), затем для 8 чисел (`k = 8`) и для 12 чисел (`k = 12`), выводя количество найденных чисел, кратных 3.
+
+> 🌐 **[EN]** `main()` calls `count` three times: first with 4 numbers (`k = 4`), then with 8 numbers (`k = 8`), and finally with 12 numbers (`k = 12`), displaying the count of numbers divisible by 3 for each call.
+> 🌐 **[AR]** تقوم الدالة الرئيسية `main()` باستدعاء الدالة `count` ثلاث مرات: الأولى لـ 4 أرقام (`k = 4`)، والثانية لـ 8 أرقام (`k = 8`)، والثالثة لـ 12 رقماً (`k = 12`)، وتطبع عدد الأرقام التي تقبل القسمة على 3 في كل مرة.
+
+---
+
+## 💻 Полный исходный код программы — Часть 7.2 (Full Source Code)
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+// دالة count لحساب الأعداد الصحيحة التي تقبل القسمة على 3 باستخدام المؤشرات
+int count(int k, ...)
+{
+    int *p = &k;   // ضبط المؤشر على المعامل الأول k (عدد العناصر)
+    int total = 0; // عداد للأعداد التي تقبل القسمة على 3
+
+    for (; k != 0; k--)
+    {
+        if (*(++p) % 3 == 0)
+        {
+ // تحريك المؤشر للعنصر التالي وفحص قابليته للقسمة على 3
+            total++;
+        }
+    }
+
+    return total;
+}
+
+int main()
+{
+    cout << "=========================================================\n";
+    cout << ">>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<\n";
+    cout << "=========================================================\n\n";
+
+    // الاستدعاء الأول: 4 أرقام
+    cout << "1. Call with 4 parameters: count(4, 3, 5, 9, 10)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(4, 3, 5, 9, 10) << "\n\n";
+
+    // الاستدعاء الثاني: 8 أرقام
+    cout << "2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(8, 1, 2, 3, 4, 5, 6, 7, 9) << "\n\n";
+
+    // الاستدعاء الثالث: 12 رقماً
+    cout << "3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21) << "\n";
+
+    cout << "=========================================================\n";
+
+    return 0;
+}
+```
+
+---
+
+## 🖥️ Пример работы программы — Часть 7.2 (Консоль)
+
+```text
+=========================================================
+>>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<
+=========================================================
+
+1. Call with 4 parameters: count(4, 3, 5, 9, 10)
+-> Count of numbers divisible by 3: 2
+
+2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)
+-> Count of numbers divisible by 3: 4
+
+3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)
+-> Count of numbers divisible by 3: 10
+=========================================================
+```
+
+---
+Full работы программы
+```text
+=========================================================
+          LABORATORY WORK #7 (Parts 7.1 & 7.2)           
+=========================================================
+
+>>> PART 7.1: OVERLOADED FUNCTIONS (POWER) <<<
+
+[1. Integer Number]
+Enter an integer base number (e.g., 5):
+> 5
+Enter the integer exponent (e.g., 5):
+> 5
+-> Result: 5^5 = 3125
+
+[2. Complex Number (a + bi)]
+Enter the real part (a):
+> 5
+Enter the imaginary part (b):
+> 5
+Enter the integer exponent:
+> 5
+-> Result: (5 + 5i)^5 = -12500 - 12500i
+---------------------------------------------------------
+
+>>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<
+
+1. Call with 4 parameters: count(4, 3, 5, 9, 10)
+-> Count of numbers divisible by 3: 2
+
+2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)
+-> Count of numbers divisible by 3: 4
+
+3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)
+-> Count of numbers divisible by 3: 10
+=========================================================
+```
+
+---
 
