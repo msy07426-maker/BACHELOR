@@ -59,6 +59,7 @@ flowchart TD
 #include <iostream>
 #include <complex>
 #include <cmath>
+#include <cstdarg>
 
 using namespace std;
 ```
@@ -353,76 +354,91 @@ flowchart TD
 
 ---
 
+## 📌 Постановка задачи (Часть 7.2)
+
+**7.2. Функции с переменным числом параметров:**
+Написать функцию `count` с переменным числом параметров, которая подсчитывает количество чисел типа `int`, кратных 3. Написать вызывающую функцию `main`, которая обращается к функции `count` не менее трёх раз с количеством параметров 4, 8, 12.
+
+> 🌐 **[EN]** Task setup (Part 7.2): Variadic functions — Write a function `count` with a variable number of parameters that counts how many `int` numbers are multiples of 3. Write a calling `main` function that calls `count` at least three times with 4, 8, and 12 parameters.
+> 🌐 **[AR]** صياغة المسألة (الجزء 7.2): الدوال ذات العدد المتغير من المعاملات — كتابة دالة باسم `count` تستقبل عدداً متغيراً من المعاملات وتحسب عدد الأرقام الصحيحة (`int`) التي تقبل القسمة على 3، ثم استدعاؤها في الدالة الرئيسية `main` ثلاث مرات على الأقل بعدد معاملات 4، 8، و 12.
+
+---
+
+
+
 ## 🧩 Пошаговый разбор кода — Часть 7.2 (Step-by-Step Code Explanation)
 
 ### 🔹 Шаг 1: Подключение библиотек (Header Files)
 
 ```cpp
 #include <iostream>
+#include <cstdarg>
 
 using namespace std;
 ```
 
-Подключается библиотека `iostream` для ввода и вывода данных в консоль. Директива `using namespace std;` позволяет использовать стандартные имена (`cout`, `endl`) без префикса `std::`.
+Подключаются библиотеки `iostream` (для ввода-вывода в консоль) и `cstdarg` (для работы с функциями с переменным числом параметров через макросы `va_list`, `va_start`, `va_arg`, `va_end`).
 
-> 🌐 **[EN]** Includes `iostream` for console input and output. `using namespace std;` allows using standard names (`cout`, `endl`) without the `std::` prefix.
-> 🌐 **[AR]** استدعاء مكتبة `iostream` للإدخال والإخراج عبر الشاشة، واستخدام `using namespace std;` لكتابة الأوامر مباشرة دون الحاجة لكتابة `std::`.
+> 🌐 **[EN]** Includes `iostream` (for console I/O) and `cstdarg` (for variadic functions using `va_list`, `va_start`, `va_arg`, and `va_end` macros).
+> 🌐 **[AR]** استدعاء مكتبتي `iostream` (للإدخال والإخراج عبر الشاشة) و `cstdarg` (للتعامل مع الدوال ذات العدد المتغير من المعاملات عبر أوامر `va_list` و `va_start` و `va_arg` و `va_end`).
 
 ---
 
-### 🔹 Шаг 2: Объявление функции и инициализация указателя
+### 🔹 Шаг 2: Объявление функции и инициализация списка аргументов
 
 ```cpp
 int count(int k, ...)
 {
-    int *p = &k;   // ضبط المؤشر على المعامل الأول k (عدد العناصر)
-    int total = 0; // عداد للأعداد التي تقبل القسمة على 3
+    va_list args;       // تعريف قائمة المعاملات المتغيرة
+    va_start(args, k);  // بدء القراءة من بعد المعامل k
+
+    int total = 0;      // عداد للأرقام التي تقبل القسمة على 3
 ```
 
-Функция `count` принимает первый обязательный параметр `k` (количество передаваемых чисел) и многоточие `...` (переменное число параметров). Указатель `p` настраивается на адрес параметра `k` в стеке памяти, а переменная `total` обнуляется для подсчёта подходящих чисел.
+Функция `count` принимает первый обязательный параметр `k` (количество передаваемых чисел) и многоточие `...` (переменное число параметров). Объект `args` типа `va_list` инициализируется макросом `va_start`, указывая на первый дополнительный аргумент после `k`, а счётчик `total` обнуляется.
 
-> 🌐 **[EN]** The function `count` takes the first mandatory parameter `k` (number of passed integers) and an ellipsis `...` (variable arguments). Pointer `p` is set to the memory address of `k` on the stack, and `total` is initialized to `0` to count multiples of 3.
-> 🌐 **[AR]** تستقبل الدالة `count` المعامل الأول الإجباري `k` (الذي يحدد عدد الأرقام الممررة) ثم النقاط الثلاث `...` للدلالة على تعدد المعاملات. يتم توجيه المؤشر `p` إلى عنوان المتغير `k` في الذاكرة (Stack)، وتصفير العداد `total`.
+> 🌐 **[EN]** The function `count` takes the mandatory first parameter `k` (number of passed integers) and an ellipsis `...`. The `va_list` object `args` is initialized with `va_start` to point after `k`, and `total` is set to `0`.
+> 🌐 **[AR]** تستقبل الدالة `count` المعامل الأول الإجباري `k` (الذي يحدد عدد الأرقام الممررة) ثم النقاط الثلاث `...`. يتم تهيئة القائمة `args` باستخدام `va_start` للبدء بقراءة المعاملات بعد `k`، وتصفير العداد `total`.
 
 ---
 
-### 🔹 Шаг 3: Цикл перебора параметров через сдвиг указателя
+### 🔹 Шаг 3: Цикл перебора параметров и проверка кратности 3
 
 ```cpp
-    for (; k != 0; k--)
-{
-        if (*(++p) % 3 == 0)
+    for (int i = 0; i < k; ++i)
+    {
+        int val = va_arg(args, int); // قراءة الرقم التالي بدقة
+        if (val % 3 == 0)
         {
-// تحريك المؤشر للعنصر التالي وفحص قابليته للقسمة على 3
             total++;
         }
     }
 
+    va_end(args);       // إغلاق القائمة
     return total;
 }
 ```
 
-В цикле `for` счётчик `k` уменьшается на 1 на каждой итерации. Выражение `*(++p)` сдвигает указатель к следующему аргументу в памяти и разыменовывает его. Если остаток от деления на 3 равен нулю (`% 3 == 0`), счётчик `total` увеличивается на 1. После завершения цикла возвращается результат `total`.
+В цикле `for` макрос `va_arg(args, int)` поочерёдно извлекает каждый следующий аргумент типа `int`. Если число делится на 3 без остатка (`val % 3 == 0`), счётчик `total` увеличивается на 1. После цикла `va_end(args)` освобождает ресурсы, и функция возвращает `total`.
 
-> 🌐 **[EN]** Inside the `for` loop, `k` decrements by 1 each iteration. The expression `*(++p)` advances the pointer to the next argument in memory and dereferences it. If the remainder when divided by 3 is zero (`% 3 == 0`), `total` is incremented. Finally, `total` is returned.
-> 🌐 **[AR]** في حلقة التكرار `for` ينقص العداد `k` بمقدار 1 في كل دورة، ويقوم التعبير `*(++p)` بتحريك المؤشر إلى الرقم التالي في الذاكرة وقراءة قيمته؛ فإذا كان يقبل القسمة على 3 بدون باقٍ (`% 3 == 0`) يزداد العداد `total` بمقدار 1، ثم تُرجع الدالة النتيجة النهائية.
+> 🌐 **[EN]** Inside the `for` loop, `va_arg(args, int)` extracts each subsequent `int` argument. If it is divisible by 3 (`val % 3 == 0`), `total` increments by 1. After the loop, `va_end(args)` cleans up and `total` is returned.
+> 🌐 **[AR]** في حلقة التكرار `for` يقوم الأمر `va_arg(args, int)` بسحب كل رقم صحيح تالٍ من القائمة؛ فإذا كان يقبل القسمة على 3 بدون باقٍ (`val % 3 == 0`) يزداد العداد `total` بمقدار 1، وبعد انتهاء الحلقة يتم إغلاق القائمة عبر `va_end` وإرجاع النتيجة.
 
 ---
 
 ### 🔹 Шаг 4: Вызов функции `count` в `main()` с 4, 8 и 12 параметрами
 
 ```cpp
-int main()
-{
-    // الاستدعاء الأول: 4 أرقام
+int main() {
+    // الاستدعاء الأول: 4 أرقام -> الناتج 2
     cout << "1. Call with 4 parameters: count(4, 3, 5, 9, 10)\n";
     cout << "-> Count of numbers divisible by 3: " << count(4, 3, 5, 9, 10) << "\n\n";
 
-    // الاستدعاء الثاني: 8 أرقام
+    // الاستدعاء الثاني: 8 أرقام -> الناتج 3
     cout << "2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)\n";
     cout << "-> Count of numbers divisible by 3: " << count(8, 1, 2, 3, 4, 5, 6, 7, 9) << "\n\n";
 
-    // الاستدعاء الثالث: 12 رقماً
+    // الاستدعاء الثالث: 12 رقماً -> الناتج 7
     cout << "3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)\n";
     cout << "-> Count of numbers divisible by 3: " << count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21) << "\n";
 
@@ -430,10 +446,10 @@ int main()
 }
 ```
 
-Функция `main()` вызывает `count` три раза: сначала для 4 чисел (`k = 4`), затем для 8 чисел (`k = 8`) и для 12 чисел (`k = 12`), выводя количество найденных чисел, кратных 3.
+Функция `main()` вызывает `count` три раза: для 4 чисел (`k = 4`), для 8 чисел (`k = 8`) и для 12 чисел (`k = 12`), выводя точное количество найденных чисел, кратных 3.
 
-> 🌐 **[EN]** `main()` calls `count` three times: first with 4 numbers (`k = 4`), then with 8 numbers (`k = 8`), and finally with 12 numbers (`k = 12`), displaying the count of numbers divisible by 3 for each call.
-> 🌐 **[AR]** تقوم الدالة الرئيسية `main()` باستدعاء الدالة `count` ثلاث مرات: الأولى لـ 4 أرقام (`k = 4`)، والثانية لـ 8 أرقام (`k = 8`)، والثالثة لـ 12 رقماً (`k = 12`)، وتطبع عدد الأرقام التي تقبل القسمة على 3 في كل مرة.
+> 🌐 **[EN]** `main()` calls `count` three times: with 4 numbers (`k = 4`), 8 numbers (`k = 8`), and 12 numbers (`k = 12`), outputting the exact count of numbers divisible by 3 for each call.
+> 🌐 **[AR]** تقوم الدالة الرئيسية `main()` باستدعاء الدالة `count` ثلاث مرات: لـ 4 أرقام (`k = 4`)، و 8 أرقام (`k = 8`)، و 12 رقماً (`k = 12`)، وتطبع العدد الصحيح للأرقام التي تقبل القسمة على 3 في كل مرة.
 
 ---
 
@@ -441,42 +457,46 @@ int main()
 
 ```cpp
 #include <iostream>
+#include <cstdarg>
 
 using namespace std;
 
-// دالة count لحساب الأعداد الصحيحة التي تقبل القسمة على 3 باستخدام المؤشرات
+// دالة count لحساب الأعداد الصحيحة التي تقبل القسمة على 3
 int count(int k, ...)
 {
-    int *p = &k;   // ضبط المؤشر على المعامل الأول k (عدد العناصر)
-    int total = 0; // عداد للأعداد التي تقبل القسمة على 3
+    va_list args;       // تعريف قائمة المعاملات المتغيرة
+    va_start(args, k);  // بدء القراءة من بعد المعامل k
 
-    for (; k != 0; k--)
+    int total = 0;      // عداد للأرقام التي تقبل القسمة على 3
+
+    for (int i = 0; i < k; ++i)
     {
-        if (*(++p) % 3 == 0)
+        int val = va_arg(args, int); // قراءة الرقم التالي بدقة
+        if (val % 3 == 0)
         {
- // تحريك المؤشر للعنصر التالي وفحص قابليته للقسمة على 3
             total++;
         }
     }
 
+    va_end(args);       // إغلاق القائمة
     return total;
 }
 
 int main()
 {
     cout << "=========================================================\n";
-    cout << ">>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<\n";
+    cout << ">>> PART 7.2: VARIADIC FUNCTION count() <<<\n";
     cout << "=========================================================\n\n";
 
-    // الاستدعاء الأول: 4 أرقام
+    // الاستدعاء الأول: 4 أرقام -> الناتج 2
     cout << "1. Call with 4 parameters: count(4, 3, 5, 9, 10)\n";
     cout << "-> Count of numbers divisible by 3: " << count(4, 3, 5, 9, 10) << "\n\n";
 
-    // الاستدعاء الثاني: 8 أرقام
+    // الاستدعاء الثاني: 8 أرقام -> الناتج 3
     cout << "2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)\n";
     cout << "-> Count of numbers divisible by 3: " << count(8, 1, 2, 3, 4, 5, 6, 7, 9) << "\n\n";
 
-    // الاستدعاء الثالث: 12 رقماً
+    // الاستدعاء الثالث: 12 رقماً -> الناتج 7
     cout << "3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)\n";
     cout << "-> Count of numbers divisible by 3: " << count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21) << "\n";
 
@@ -492,19 +512,162 @@ int main()
 
 ```text
 =========================================================
->>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<
+>>> PART 7.2: VARIADIC FUNCTION count() <<<
 =========================================================
 
 1. Call with 4 parameters: count(4, 3, 5, 9, 10)
 -> Count of numbers divisible by 3: 2
 
 2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)
--> Count of numbers divisible by 3: 4
+-> Count of numbers divisible by 3: 3
 
 3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)
--> Count of numbers divisible by 3: 10
+-> Count of numbers divisible by 3: 7
 =========================================================
 ```
+
+---
+
+## ✅ Вывод
+
+В ходе выполнения второй части лабораторной работы №7 был изучен стандартный механизм создания функций с переменным числом параметров (`...`) в языке C++ с помощью заголовочного файла `<cstdarg>` (`va_list`, `va_start`, `va_arg`, `va_end`), обеспечивающий корректную работу программы на современных 64-разрядных архитектурах.
+
+## 💻 Полный исходный код программы — Часть 7.2 (Full Source Code)
+
+```cpp
+#include <iostream>
+#include <complex>
+#include <cmath>
+#include <cstdarg>
+
+using namespace std;
+
+// =========================================================
+// الجزء 7.1: الدوال المحملة زائداً (Overloaded Functions)
+// =========================================================
+
+// أ) رفع عدد صحيح إلى أس
+double power(int base, int exponent) 
+{
+    if (exponent == 0) return 1.0;
+
+    double result = 1.0;
+    int absExp = abs(exponent);
+
+    for (int i = 0; i < absExp; ++i) 
+    {
+        result *= base;
+    }
+
+    return (exponent < 0) ? (1.0 / result) : result;
+}
+
+// ب) رفع عدد مركب إلى أس
+complex<double> power(complex<double> base, int exponent) 
+{
+    if (exponent == 0) return complex<double>(1.0, 0.0);
+
+    complex<double> result(1.0, 0.0);
+    int absExp = abs(exponent);
+
+    for (int i = 0; i < absExp; ++i) 
+    {
+        result *= base;
+    }
+
+    return (exponent < 0) ? (complex<double>(1.0, 0.0) / result) : result;
+}
+
+// =========================================================
+// الجزء 7.2: دالة count باستخدام المؤشرات (أسلوب المحاضرة)
+// =========================================================
+
+
+
+int count(int k, ...) 
+{
+    va_list args;       // تعريف قائمة المعاملات المتغيرة
+    va_start(args, k);  // بدء القراءة من بعد المعامل k
+
+    int total = 0;      // عداد للأرقام التي تقبل القسمة على 3
+
+    for (int i = 0; i < k; ++i) 
+    {
+        int val = va_arg(args, int); // قراءة الرقم التالي بدقة على أي نظام (32 أو 64 بت)
+        if (val % 3 == 0) 
+        {
+            total++;
+        }
+    }
+
+    va_end(args);       // إغلاق القائمة
+    return total;
+}
+
+
+// =========================================================
+// البرنامج الرئيسي (main)
+// =========================================================
+
+int main() 
+{
+    cout << "=========================================================\n";
+    cout << "          LABORATORY WORK #7 (Parts 7.1 & 7.2)           \n";
+    cout << "=========================================================\n\n";
+
+    // --- تشغيل الجزء 7.1 ---
+    cout << ">>> PART 7.1: OVERLOADED FUNCTIONS (POWER) <<<\n\n";
+
+    int intBase, intExp;
+    cout << "[1. Integer Number]\n";
+    cout << "Enter an integer base number (e.g., 5):\n> ";
+    cin >> intBase;
+    cout << "Enter the integer exponent (e.g., 5):\n> ";
+    cin >> intExp;
+
+    cout << "-> Result: " << intBase << "^" << intExp << " = " << power(intBase, intExp) << "\n\n";
+
+    double realPart, imagPart;
+    int compExp;
+    cout << "[2. Complex Number (a + bi)]\n";
+    cout << "Enter the real part (a):\n> ";
+    cin >> realPart;
+    cout << "Enter the imaginary part (b):\n> ";
+    cin >> imagPart;
+    cout << "Enter the integer exponent:\n> ";
+    cin >> compExp;
+
+    complex<double> compBase(realPart, imagPart);
+    complex<double> compResult = power(compBase, compExp);
+
+    char sign = (compResult.imag() >= 0) ? '+' : '-';
+    cout << "-> Result: (" << realPart << (imagPart >= 0 ? " + " : " - ") << abs(imagPart) << "i)^" << compExp
+         << " = " << compResult.real() << " " << sign << " " << abs(compResult.imag()) << "i\n";
+    cout << "---------------------------------------------------------\n\n";
+
+    // --- تشغيل الجزء 7.2 ---
+    cout << ">>> PART 7.2: VARIADIC FUNCTION count() USING POINTERS <<<\n\n";
+
+    // الاستدعاء الأول: 4 أرقام
+    cout << "1. Call with 4 parameters: count(4, 3, 5, 9, 10)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(4, 3, 5, 9, 10) << "\n\n";
+
+    // الاستدعاء الثاني: 8 أرقام
+    cout << "2. Call with 8 parameters: count(8, 1, 2, 3, 4, 5, 6, 7, 9)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(8, 1, 2, 3, 4, 5, 6, 7, 9) << "\n\n";
+
+    // الاستدعاء الثالث: 12 رقماً
+    cout << "3. Call with 12 parameters: count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21)\n";
+    cout << "-> Count of numbers divisible by 3: " << count(12, 3, 6, 9, 12, 15, 18, 2, 4, 7, 8, 11, 21) << "\n";
+
+    cout << "=========================================================\n";
+
+    return 0;
+}
+
+```
+
+---
 
 ---
 Full работы программы
